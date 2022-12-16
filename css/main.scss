@@ -1,0 +1,91 @@
+$light-cyan: hsl(193, 38%, 86%);
+$neon-green: hsl(150, 100%, 66%);
+$grayish-blue: hsl(217, 19%, 38%);
+$dark-grayish-blue: hsl(217, 19%, 24%);
+$dark-blue: hsl(218, 23%, 16%);
+
+* {
+    font-family: 'Manrope', sans-serif;
+    font-size: 28px;
+
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $dark-blue;
+
+        div.container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 .7rem;
+            padding: 0 1rem;
+            background-color: $dark-grayish-blue;
+            border-radius: .4rem;
+            max-width: 17.5rem;
+
+
+            h1 {
+                font-size: .5rem;
+                letter-spacing: .1rem;
+                color: $neon-green;
+                text-align: center;
+                text-transform: uppercase;
+                margin-top: 1.5rem;
+                margin-bottom: 0;
+
+                span {
+                    font-size: inherit;
+                }
+            }
+
+            p {
+                color: $light-cyan;
+                text-align: center;
+                margin-left: .5rem;
+                margin-right: .5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            img {
+                margin: 0 auto;
+                margin-bottom: 1rem;
+            }
+
+            button {
+                width: 2.2rem;
+                height: 2.2rem;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-image: url(../images/icon-dice.svg);
+                border-radius: 100%;
+                border: none;
+                outline: none;
+                background-color: $neon-green;
+                margin-bottom: -1.1rem;
+
+                &.animate {
+                    animation: animation 1s linear infinite;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    -webkit-box-shadow: 1px 1px 67px -4px rgba(82, 255, 168, 1);
+                    -moz-box-shadow: 1px 1px 67px -4px rgba(82, 255, 168, 1);
+                    box-shadow: 1px 1px 67px -4px rgba(82, 255, 168, 1);
+                }
+
+                @keyframes animation {
+                    from {
+                        transform: rotate(0deg);
+                    }
+                    to {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+    }
+}

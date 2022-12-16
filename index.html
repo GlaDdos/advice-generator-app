@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet">
+  <link href="./css/main.css" rel="stylesheet" >
+  <title>Frontend Mentor | Advice generator app</title>
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Advice #<span id="slipId"></span></h1>
+    <p id="slipAdvice"></p>
+    <picture>
+      <source media="(min-width:650px)" srcset="./images/pattern-divider-desktop.svg">
+      <img src="./images/pattern-divider-mobile.svg" alt="separator">
+    </picture>
+    <button id="button"></button>
+  </div>
+  
+</body>
+
+<script>
+  const button = document.getElementById('button');
+  const url = 'https://api.adviceslip.com/advice';
+
+  async function loadQuote(url) {
+    let response = await fetch(url);
+    if(response.status == 200) {
+      let json = await response.json();
+      return json.slip;
+    }
+
+    throw new Error(response.status);
+  }
+
+  function writeAdvice(slip) {
+    const id = document.getElementById('slipId');
+    const advice = document.getElementById('slipAdvice');
+
+    id.innerText = slip.id;
+    advice.innerText = slip.advice;
+  }
+
+  window.onload = function () {
+    button.classList.add('animate');
+    loadQuote(url)
+    .then( slip => {
+      writeAdvice(slip);
+    })
+    .catch(alert)
+    .finally(() => {
+      button.classList.remove('animate');
+    })
+  }
+
+  button.addEventListener('click', (event) => {
+    button.classList.add('animate');
+    loadQuote(url)
+    .then( slip => {
+      writeAdvice(slip);
+    })
+    .catch(alert)
+    .finally(() => {
+      button.classList.remove('animate');
+    })
+  });
+
+</script>
+</html>
